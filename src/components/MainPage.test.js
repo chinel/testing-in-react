@@ -40,3 +40,22 @@ it("filters robot correctly", () => {
     },
   ]);
 });
+
+it("filters robot correctly 2", () => {
+  const props2 = {
+    onRequestRobots: jest.fn(),
+    robots: [
+      {
+        id: 3,
+        name: "john",
+        email: "john@example.com",
+      },
+    ],
+    searchField: "a",
+    isPending: false,
+  };
+
+  const filtered_Robots = [];
+  const wrapper3 = shallow(<MainPage {...props2} />);
+  expect(wrapper3.instance().filteredRobots([])).toEqual(filtered_Robots);
+});
