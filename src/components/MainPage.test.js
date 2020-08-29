@@ -59,3 +59,21 @@ it("filters robot correctly 2", () => {
   const wrapper3 = shallow(<MainPage {...props2} />);
   expect(wrapper3.instance().filteredRobots([])).toEqual(filtered_Robots);
 });
+
+it("check that is pending props is true", () => {
+  const props3 = {
+    onRequestRobots: jest.fn(),
+    robots: [
+      {
+        id: 3,
+        name: "john",
+        email: "john@example.com",
+      },
+    ],
+    searchField: "a",
+    isPending: true,
+  };
+
+  const wrapper4 = shallow(<MainPage {...props3} />);
+  expect(wrapper4.instance().props.isPending).toEqual(true);
+});
