@@ -24,3 +24,14 @@ describe("searchRobots", () => {
     ).toEqual({ searchField: "abc" });
   });
 });
+
+describe("requestsRobots", () => {
+  const initialStateRobots = {
+    robots: [],
+    isPending: true,
+  };
+
+  it("should return the initial state", () => {
+    expect(reducers.requestRobots(undefined, {})).toEqual(initialStateRobots);
+  });
+});
