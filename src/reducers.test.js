@@ -8,7 +8,19 @@ import {
 import * as reducers from "./reducers";
 
 describe("searchRobots", () => {
+  const initialSearch = {
+    searchField: "",
+  };
   it("should return the initial state", () => {
     expect(reducers.searchRobots(undefined, {})).toEqual({ searchField: "" });
+  });
+
+  it("should handle CHANGE_SEARCHFIELD", () => {
+    expect(
+      reducers.searchRobots(initialSearch, {
+        type: CHANGE_SEARCHFIELD,
+        payload: "abc",
+      })
+    ).toEqual({ searchField: "abc" });
   });
 });
