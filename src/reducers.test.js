@@ -28,7 +28,7 @@ describe("searchRobots", () => {
 describe("requestsRobots", () => {
   const initialStateRobots = {
     robots: [],
-    isPending: true,
+    isPending: false,
   };
 
   const mockRobots = [
@@ -50,7 +50,10 @@ describe("requestsRobots", () => {
         type: REQUEST_ROBOTS_PENDING,
         payload: { isPending: true },
       })
-    ).toEqual(initialStateRobots);
+    ).toEqual({
+      robots: [],
+      isPending: true,
+    });
   });
 
   it("should handle REQUEST_ROBOTS_SUCCESS", () => {
@@ -60,5 +63,14 @@ describe("requestsRobots", () => {
         payload: { isPending: false, robots: mockRobots },
       })
     ).toEqual({ robots: mockRobots, isPending: false });
+  });
+
+  it("should handle REQUEST_ROBOTS_FAILED", () => {
+    expect(
+      reducers.requestRobots(initialStateRobots, {
+        type: REQUEST_ROBOTS_FAILED,
+        payload: { error: "No" },
+      })
+    ).toEqual({ robots: [], isPending: false, error: "No" });
   });
 });
