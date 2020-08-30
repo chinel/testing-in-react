@@ -31,7 +31,34 @@ describe("requestsRobots", () => {
     isPending: true,
   };
 
+  const mockRobots = [
+    {
+      id: 1,
+      name: "John Snow",
+      username: "johnjohn",
+      email: "john@gmail.com",
+    },
+  ];
+
   it("should return the initial state", () => {
     expect(reducers.requestRobots(undefined, {})).toEqual(initialStateRobots);
+  });
+
+  it("should handle REQUEST_ROBOTS_PENDING", () => {
+    expect(
+      reducers.requestRobots(initialStateRobots, {
+        type: REQUEST_ROBOTS_PENDING,
+        payload: { isPending: true },
+      })
+    ).toEqual(initialStateRobots);
+  });
+
+  it("should handle REQUEST_ROBOTS_SUCCESS", () => {
+    expect(
+      reducers.requestRobots(initialStateRobots, {
+        type: REQUEST_ROBOTS_SUCCESS,
+        payload: { isPending: false, robots: mockRobots },
+      })
+    ).toEqual({ robots: mockRobots, isPending: false });
   });
 });
