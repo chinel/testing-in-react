@@ -34,7 +34,7 @@ describe("requestsRobots", () => {
   const mockRobots = [
     {
       id: 1,
-      name: "John Snow",
+      name: "John ",
       username: "johnjohn",
       email: "john@gmail.com",
     },
@@ -60,7 +60,7 @@ describe("requestsRobots", () => {
     expect(
       reducers.requestRobots(initialStateRobots, {
         type: REQUEST_ROBOTS_SUCCESS,
-        payload: { isPending: false, robots: mockRobots },
+        payload: mockRobots,
       })
     ).toEqual({ robots: mockRobots, isPending: false });
   });

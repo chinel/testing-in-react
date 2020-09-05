@@ -13,15 +13,17 @@ class MainPage extends Component {
   }
 
   filteredRobots = () => {
-    return this.props.robots.filter((robot) => {
-      return robot.name
-        .toLowerCase()
-        .includes(this.props.searchField.toLowerCase());
-    });
+    if (this.props.robots) {
+      return this.props.robots.filter((robot) => {
+        return robot.name
+          .toLowerCase()
+          .includes(this.props.searchField.toLowerCase());
+      });
+    }
   };
 
   render() {
-    const { robots, onSearchChange, isPending } = this.props;
+    const { onSearchChange, isPending } = this.props;
 
     return (
       <div className="tc">
